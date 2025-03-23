@@ -19,12 +19,11 @@ const PackageCard = ({ travelPackage }) => {
         
         <div className="package-footer">
           <span className="package-price">${price}</span>
-          <Link to={/packages/${id}} className="btn-view">View Details</Link>
+          <Link to={`/packages/${id}`} className="btn-view">View Details</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default PackageDetail; default PackageList;
-
+ export { PackageDetail, PackageList };

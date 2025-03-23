@@ -31,11 +31,11 @@ const PackageDetail = () => {
 
   const handleBookNow = () => {
     if (!currentUser) {
-      navigate('/login', { state: { from: /packages/${packageId} } });
+      navigate('/login', { state: { from: `/packages/${packageId}` } });
       return;
     }
     
-    navigate(/booking/${packageId});
+    navigate(`/booking/${packageId}`);
   };
 
   if (loading) {

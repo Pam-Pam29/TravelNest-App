@@ -76,7 +76,7 @@ const BookingForm = () => {
       };
       
       const bookingId = await createBooking(bookingData);
-      navigate(/payment/${bookingId});
+      navigate(`/payment/${bookingId}`);
     } catch (error) {
       setError('Failed to create booking: ' + error.message);
     } finally {

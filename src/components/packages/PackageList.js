@@ -152,4 +152,4 @@ const PackageList = () => {
   );
 };
 
-export
+export default PackageList;

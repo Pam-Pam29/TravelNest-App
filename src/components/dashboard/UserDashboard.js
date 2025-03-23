@@ -37,13 +37,13 @@ const UserDashboard = () => {
       
       <div className="dashboard-tabs">
         <button 
-          className={tab ${activeTab === 'bookings' ? 'active' : ''}} 
+          className={`tab ${activeTab === 'bookings' ? 'active' : ''}`} 
           onClick={() => setActiveTab('bookings')}
         >
           My Bookings
         </button>
         <button 
-          className={tab ${activeTab === 'profile' ? 'active' : ''}}
+          className={`tab ${activeTab === 'profile' ? 'active' : ''}`}
           onClick={() => setActiveTab('profile')}
         >
           My Profile
@@ -83,5 +83,3 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
-
-

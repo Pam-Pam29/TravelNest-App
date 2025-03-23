@@ -39,7 +39,7 @@ export const processPayment = async (bookingId, paymentDetails) => {
     });
     
     // Send confirmation email (would be handled by Cloud Functions in production)
-    console.log(Payment confirmation email sent for booking ${bookingId});
+    console.log(`Payment confirmation email sent for booking ${bookingId}`);
     
     return true;
   } catch (error) {
