@@ -381,7 +381,6 @@ img {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-  padding: 2rem;
 
 /* Buttons */
 .btn-primary {
@@ -1343,8 +1342,9 @@ img {
 }
 
 .destinations-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   gap: 2rem;
+   max-width: 1200px;
+   margin: 0 auto;
+ }
