@@ -1,8 +1,7 @@
 // src/components/packages/PackageCard.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {PackageList} from './PackageList';
-import {PackageDetail} from './PackageDetail';
+
 const PackageCard = ({ travelPackage }) => {
   const { id, title, description, price, duration, region, imageUrl } = travelPackage;
 
@@ -27,4 +26,4 @@ const PackageCard = ({ travelPackage }) => {
   );
 };
 
- export { PackageDetail, PackageList };
+ export default PackageCard;

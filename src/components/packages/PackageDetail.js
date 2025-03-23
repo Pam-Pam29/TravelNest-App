@@ -141,5 +141,5 @@ const PackageDetail = () => {
   );
 };
 
-export default PackageCard;
+export default PackageDetail;
 
