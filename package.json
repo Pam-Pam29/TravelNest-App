@@ -1,12 +1,14 @@
 {
   "dependencies": {
-    "firebase": "^11.5.0"
+    "firebase": "^11.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "scripts": "^0.1.0"
   },
   "name": "travelnest-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
