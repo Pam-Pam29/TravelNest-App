@@ -26,5 +26,5 @@ const PackageCard = ({ travelPackage }) => {
   );
 };
 
-export default PackageCard;
+export default PackageDetail; default PackageList;
 
