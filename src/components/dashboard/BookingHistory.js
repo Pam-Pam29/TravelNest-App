@@ -66,7 +66,7 @@ const BookingHistory = ({ bookings }) => {
               <Link to={`/confirmation/${booking.id}`} className="btn-view-details">
                 View Details
               </Link>
-              <Link to={/payment/${booking.id}} className="btn-view-details">
+              <Link to={`/payment/${booking.id}`} className="btn-view-details">
              Process Payment
              </Link>
               
