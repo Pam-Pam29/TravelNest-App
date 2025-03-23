@@ -32,7 +32,7 @@ const BookingHistory = ({ bookings }) => {
           <div key={booking.id} className="booking-card">
             <div className="booking-header">
               <h3>{booking.packageTitle}</h3>
-              <span className={booking-status ${getStatusClass(booking.status)}}>
+              <span className={`booking-status ${getStatusClass(booking.status)}`}>
                 {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
               </span>
             </div>
@@ -63,7 +63,7 @@ const BookingHistory = ({ bookings }) => {
             </div>
             
             <div className="booking-actions">
-              <Link to={/confirmation/${booking.id}} className="btn-view-details">
+              <Link to={`/confirmation/${booking.id}`} className="btn-view-details">
                 View Details
               </Link>
               
