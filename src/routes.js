@@ -25,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/packages/:packageId" element={<PackageDetailPage />} />
       <Route path="/booking/:packageId" element={<BookingPage />} />
       <Route path="/payment/:bookingId" element={<PaymentPage />} />
+      <Route path="/payment-test" element={<PaymentTestPage />} />
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />
       <Route path="/admin" element={<AdminDashboardPage />} />

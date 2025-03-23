@@ -9,7 +9,7 @@ const PaymentTestPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (bookingId) {
-      navigate(/payment/${bookingId});
+      navigate(`/payment/${bookingId}`);
     }
   };
   
