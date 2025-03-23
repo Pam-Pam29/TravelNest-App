@@ -1,5 +1,3 @@
-
-
 // src/services/packageService.js
 import { 
   collection, 
