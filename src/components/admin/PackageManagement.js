@@ -329,7 +329,7 @@ const PackageManagement = () => {
                     <textarea
                       value={day}
                       onChange={(e) => handleArrayInputChange(e, index, 'itinerary')}
-                      placeholder={Day ${index + 1}}
+                      placeholder={`Day ${index + 1}`}
                       rows="2"
                     ></textarea>
                     <button
