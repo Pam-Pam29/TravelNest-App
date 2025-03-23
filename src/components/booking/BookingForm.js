@@ -85,11 +85,17 @@ const BookingForm = () => {
       
       // Store the booking ID in localStorage as a backup
       localStorage.setItem('lastBookingId', bookingId);
+
+      // Debug alert
+    alert(Booking created! ID: ${bookingId}. About to navigate to payment.);
+    
+    // Force a direct URL navigation instead of using React Router
+    window.location.href = /payment/${bookingId};
       
       // Add alert to show the booking ID
-      alert("Booking created with ID: " + bookingId + ". Click OK to proceed to payment.");
+    //  alert("Booking created with ID: " + bookingId + ". Click OK to proceed to payment.");
       
-      navigate(`/payment/${bookingId}`);
+     // navigate(`/payment/${bookingId}`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
       setError('Failed to create booking: ' + error.message);
