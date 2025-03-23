@@ -14,17 +14,25 @@ import { db } from './firebase';
 // Create a new booking
 export const createBooking = async (bookingData) => {
   try {
-    console.log("Service: Creating booking with data", bookingData);
-    const bookingsCollection = collection(db, 'bookings');
-    const docRef = await addDoc(bookingsCollection, {
+    console.log("Creating booking...");
+    // Add a test field to confirm the function runs
+    const bookingWithTest = {
       ...bookingData,
       status: 'pending',
-      createdAt: new Date()
-    });
-    console.log("Service: Booking created with ID:", docRef.id);
+      createdAt: new Date(),
+      testField: 'This is a test booking'
+    };
+    
+    const bookingsCollection = collection(db, 'bookings');
+    const docRef = await addDoc(bookingsCollection, bookingWithTest);
+    
+    console.log("Booking created with ID:", docRef.id);
+    
+    // Return the ID explicitly
     return docRef.id;
   } catch (error) {
-    console.error("Service: Error creating booking:", error);
+    console.error("Error creating booking:", error);
+    alert("Error creating booking: " + error.message); // Add alert for visibility
     throw error;
   }
 };
