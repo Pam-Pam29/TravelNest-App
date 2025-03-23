@@ -1,21 +1,21 @@
-// src/components/booking/PaymentForm.js
+// src/components/booking/BookingForm.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getBookingById, processPayment } from '../../services/bookingService';
+import { getPackageById } from '../../services/packageService';
+import { createBooking } from '../../services/bookingService';
 import { useAuth } from '../../contexts/AuthContext';
 
-const PaymentForm = () => {
-  const { bookingId } = useParams();
-  const { currentUser } = useAuth();
+const BookingForm = () => {
+  const { packageId } = useParams();
+  const { currentUser, userProfile } = useAuth();
   const navigate = useNavigate();
   
-  const [booking, setBooking] = useState(null);
-  const [cardName, setCardName] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
+  const [travelPackage, setTravelPackage] = useState(null);
+  const [travelers, setTravelers] = useState(1);
+  const [startDate, setStartDate] = useState('');
+  const [specialRequests, setSpecialRequests] = useState('');
   const [loading, setLoading] = useState(true);
-  const [processing, setProcessing] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -24,176 +24,158 @@ const PaymentForm = () => {
       return;
     }
 
-    const fetchBooking = async () => {
+    const fetchPackage = async () => {
       try {
-        console.log("Attempting to fetch booking with ID:", bookingId);
-        const data = await getBookingById(bookingId);
-        console.log("Booking data received:", data);
+        console.log("Fetching package with ID:", packageId);
+        const data = await getPackageById(packageId);
+        console.log("Package data received:", data);
+        setTravelPackage(data);
         
-        // Verify that the booking belongs to the current user
-        if (data.userId !== currentUser.uid) {
-          console.error("Unauthorized: Booking belongs to user", data.userId);
-          setError('Unauthorized access to this booking');
-          return;
-        }
-        
-        setBooking(data);
+        // Set default start date to 30 days from now
+        const defaultDate = new Date();
+        defaultDate.setDate(defaultDate.getDate() + 30);
+        setStartDate(defaultDate.toISOString().split('T')[0]);
       } catch (error) {
-        console.error('Detailed error:', error);
-        setError('Failed to fetch booking: ' + error.message);
+        console.error("Error fetching package:", error);
+        setError('Failed to fetch package: ' + error.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBooking();
-  }, [bookingId, currentUser, navigate]);
+    fetchPackage();
+  }, [packageId, currentUser, navigate]);
+
+  const getTotalPrice = () => {
+    if (!travelPackage) return 0;
+    return travelPackage.price * travelers;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!booking) {
-      setError('Booking information not available');
-      return;
-    }
-    
-    // Basic validation
-    if (!cardName || !cardNumber || !expiryDate || !cvv) {
-      setError('Please fill all payment fields');
-      return;
-    }
-    
-    // Simple card number validation
-    if (cardNumber.replace(/\s/g, '').length !== 16) {
-      setError('Invalid card number. Please enter a 16-digit card number.');
+    if (!travelPackage || !startDate) {
+      setError('Please fill all required fields');
       return;
     }
     
     try {
-      setProcessing(true);
+      setSubmitting(true);
       setError('');
       
-      console.log("Processing payment for booking:", bookingId);
-      // For demo purposes, we're not actually processing a real payment
-      const paymentDetails = {
-        cardName,
-        // Store last 4 digits only for security
-        cardLast4: cardNumber.slice(-4),
-        paymentDate: new Date().toISOString()
+      const bookingData = {
+        packageId,
+        packageTitle: travelPackage.title,
+        packagePrice: travelPackage.price,
+        travelers,
+        totalPrice: getTotalPrice(),
+        startDate,
+        specialRequests,
+        userId: currentUser.uid,
+        userName: userProfile.name,
+        userEmail: currentUser.email,
+        status: 'pending',
+        paymentStatus: 'pending'
       };
       
-      await processPayment(bookingId, paymentDetails);
-      console.log("Payment processed successfully");
+      // Add logging to debug
+      console.log("Creating booking with data:", bookingData);
+      const bookingId = await createBooking(bookingData);
+      console.log("Booking created with ID:", bookingId);
       
-      navigate(`/confirmation/${bookingId}`);
+      // Store the booking ID in localStorage as a backup
+      localStorage.setItem('lastBookingId', bookingId);
+      
+      // Add alert to show the booking ID
+      alert("Booking created with ID: " + bookingId + ". Click OK to proceed to payment.");
+      
+      navigate(/payment/${bookingId});
     } catch (error) {
-      console.error("Payment processing error:", error);
-      setError('Payment processing failed: ' + error.message);
+      console.error("Error in handleSubmit:", error);
+      setError('Failed to create booking: ' + error.message);
     } finally {
-      setProcessing(false);
+      setSubmitting(false);
     }
   };
 
   if (loading) {
-    return <div className="loading">Loading payment information...</div>;
+    return <div className="loading">Loading booking form...</div>;
   }
 
-  if (error && !booking) {
-    return <div className="error-message">{error}</div>;
-  }
-
-  if (!booking) {
-    return <div className="error-message">Booking not found</div>;
+  if (!travelPackage) {
+    return <div className="error-message">Package not found</div>;
   }
 
   return (
-    <div className="payment-form-container">
-      <h2>Payment Information</h2>
-      
-      <div className="booking-summary">
-        <h3>Booking Summary</h3>
-        <p><strong>Package:</strong> {booking.packageTitle}</p>
-        <p><strong>Start Date:</strong> {new Date(booking.startDate).toLocaleDateString()}</p>
-        <p><strong>Travelers:</strong> {booking.travelers}</p>
-        <p><strong>Total Amount:</strong> ${booking.totalPrice}</p>
+    <div className="booking-form-container">
+      <h2>Book Your Trip</h2>
+      <div className="booking-package-summary">
+        <h3>{travelPackage.title}</h3>
+        <p>Destination: {travelPackage.region}</p>
+        <p>Duration: {travelPackage.duration} days</p>
+        <p>Price: ${travelPackage.price} per person</p>
       </div>
       
       {error && <div className="error-message">{error}</div>}
       
-      <form onSubmit={handleSubmit} className="payment-form">
+      <form onSubmit={handleSubmit} className="booking-form">
         <div className="form-group">
-          <label htmlFor="cardName">Cardholder Name</label>
+          <label htmlFor="travelers">Number of Travelers</label>
           <input
-            type="text"
-            id="cardName"
-            value={cardName}
-            onChange={(e) => setCardName(e.target.value)}
-            placeholder="Name on card"
+            type="number"
+            id="travelers"
+            min="1"
+            max="10"
+            value={travelers}
+            onChange={(e) => setTravelers(parseInt(e.target.value))}
             required
           />
         </div>
         
         <div className="form-group">
-          <label htmlFor="cardNumber">Card Number</label>
+          <label htmlFor="startDate">Start Date</label>
           <input
-            type="text"
-            id="cardNumber"
-            value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value.replace(/\D/g, '').slice(0, 16))}
-            placeholder="1234 5678 9012 3456"
+            type="date"
+            id="startDate"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            min={new Date().toISOString().split('T')[0]}
             required
           />
         </div>
         
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="expiryDate">Expiry Date</label>
-            <input
-              type="text"
-              id="expiryDate"
-              value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
-              placeholder="MM/YY"
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="cvv">CVV</label>
-            <input
-              type="text"
-              id="cvv"
-              value={cvv}
-              onChange={(e) => setCvv(e.target.value.replace(/\D/g, '').slice(0, 3))}
-              placeholder="123"
-              required
-            />
-          </div>
+        <div className="form-group">
+          <label htmlFor="specialRequests">Special Requests (Optional)</label>
+          <textarea
+            id="specialRequests"
+            value={specialRequests}
+            onChange={(e) => setSpecialRequests(e.target.value)}
+            rows="4"
+          ></textarea>
         </div>
         
-        <div className="total-payment">
-          <span>Total Payment</span>
-          <span>${booking.totalPrice}</span>
-        </div>
-        
-        <div className="payment-note">
-          <p>
-            <small>
-              Note: This is a demo application. No actual payment will be processed and no real card information should be entered.
-            </small>
-          </p>
+        <div className="booking-summary">
+          <h3>Booking Summary</h3>
+          <div className="summary-row">
+            <span>Package Price</span>
+            <span>${travelPackage.price} × {travelers} traveler(s)</span>
+          </div>
+          <div className="summary-total">
+            <span>Total</span>
+            <span>${getTotalPrice()}</span>
+          </div>
         </div>
         
         <button 
           type="submit" 
-          className="btn-pay-now"
-          disabled={processing}
+          className="btn-continue"
+          disabled={submitting}
         >
-          {processing ? 'Processing Payment...' : 'Complete Payment'}
+          {submitting ? 'Processing...' : 'Continue to Payment'}
         </button>
       </form>
     </div>
   );
 };
 
-export default PaymentForm;
+export default BookingForm;
