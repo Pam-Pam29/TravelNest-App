@@ -26,7 +26,9 @@ const BookingForm = () => {
 
     const fetchPackage = async () => {
       try {
+        console.log("Fetching package with ID:", packageId);
         const data = await getPackageById(packageId);
+        console.log("Package data received:", data);
         setTravelPackage(data);
         
         // Set default start date to 30 days from now
@@ -34,6 +36,7 @@ const BookingForm = () => {
         defaultDate.setDate(defaultDate.getDate() + 30);
         setStartDate(defaultDate.toISOString().split('T')[0]);
       } catch (error) {
+        console.error("Error fetching package:", error);
         setError('Failed to fetch package: ' + error.message);
       } finally {
         setLoading(false);
@@ -75,9 +78,14 @@ const BookingForm = () => {
         paymentStatus: 'pending'
       };
       
+      // Add logging to debug
+      console.log("Creating booking with data:", bookingData);
       const bookingId = await createBooking(bookingData);
-      navigate(`/payment/${bookingId}`);
+      console.log("Booking created with ID:", bookingId);
+      
+      navigate(/payment/${bookingId});
     } catch (error) {
+      console.error("Error creating booking:", error);
       setError('Failed to create booking: ' + error.message);
     } finally {
       setSubmitting(false);
@@ -164,5 +172,5 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default BookingForm;
 
