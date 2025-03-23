@@ -15,8 +15,18 @@ const BookingConfirmation = () => {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        console.log("Fetching confirmation for booking ID:", bookingId);
-        const data = await getBookingById(bookingId);
+        // Try to get the booking ID from the URL or localStorage
+        const idToUse = bookingId || localStorage.getItem('lastBookingId');
+        
+        console.log("Fetching confirmation for booking ID:", idToUse);
+        
+        if (!idToUse) {
+          setError('No booking ID found. Please try creating a booking again.');
+          setLoading(false);
+          return;
+        }
+        
+        const data = await getBookingById(idToUse);
         console.log("Confirmation data received:", data);
         
         // Verify that the booking belongs to the current user
@@ -63,7 +73,7 @@ const BookingConfirmation = () => {
       <div className="confirmation-details">
         <div className="confirmation-number">
           <h3>Booking Reference</h3>
-          <p>{bookingId}</p>
+          <p>{booking.id}</p>
         </div>
         
         <div className="confirmation-info">
