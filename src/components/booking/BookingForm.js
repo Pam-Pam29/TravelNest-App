@@ -87,10 +87,10 @@ const BookingForm = () => {
       localStorage.setItem('lastBookingId', bookingId);
 
       // Debug alert
-    alert(Booking created! ID: ${bookingId}. About to navigate to payment.);
+alert(`Booking created! ID: ${bookingId}. About to navigate to payment.`); 
     
     // Force a direct URL navigation instead of using React Router
-    window.location.href = /payment/${bookingId};
+    window.location.href = `/payment/${bookingId}`;
       
       // Add alert to show the booking ID
     //  alert("Booking created with ID: " + bookingId + ". Click OK to proceed to payment.");
