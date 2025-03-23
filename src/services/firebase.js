@@ -6,12 +6,13 @@ import { getStorage } from 'firebase/storage';
 
 // Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "travenest.firebaseapp.com",
-  projectId: "travenest",
-  storageBucket: "travenest.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAvXOapjqvQ2ru6JeG7jy5aMYuZ_bEpGxg",
+  authDomain: "travelnest-app-1.firebaseapp.com",
+  projectId: "travelnest-app-1",
+  storageBucket: "travelnest-app-1.firebasestorage.app",
+  messagingSenderId: "557240068663",
+  appId: "1:557240068663:web:b82df76a646767db0b2db2",
+  measurementId: "G-Q6H5YMQ67M"
 };
 
 // Initialize Firebase
