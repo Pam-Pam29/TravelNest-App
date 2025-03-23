@@ -85,7 +85,7 @@ const PaymentForm = () => {
       await processPayment(bookingId, paymentDetails);
       console.log("Payment processed successfully");
       
-      navigate(/confirmation/${bookingId});
+      navigate(`/confirmation/${bookingId}`);
     } catch (error) {
       console.error("Payment processing error:", error);
       setError('Payment processing failed: ' + error.message);
