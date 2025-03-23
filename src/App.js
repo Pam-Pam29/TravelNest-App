@@ -1,1 +1,26 @@
+// src/App.js
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
+import AppRoutes from './routes';
+import { AuthProvider } from './contexts/AuthContext';
+import './styles/main.css';
 
+const App = () => {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <div className="app">
+          <Navbar />
+          <main className="main-content">
+            <AppRoutes />
+          </main>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+};
+
+export default App;
