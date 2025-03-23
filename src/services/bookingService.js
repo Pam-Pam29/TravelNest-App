@@ -14,14 +14,17 @@ import { db } from './firebase';
 // Create a new booking
 export const createBooking = async (bookingData) => {
   try {
+    console.log("Service: Creating booking with data", bookingData);
     const bookingsCollection = collection(db, 'bookings');
     const docRef = await addDoc(bookingsCollection, {
       ...bookingData,
       status: 'pending',
       createdAt: new Date()
     });
+    console.log("Service: Booking created with ID:", docRef.id);
     return docRef.id;
   } catch (error) {
+    console.error("Service: Error creating booking:", error);
     throw error;
   }
 };
@@ -29,20 +32,19 @@ export const createBooking = async (bookingData) => {
 // Process payment for booking
 export const processPayment = async (bookingId, paymentDetails) => {
   try {
-    // In a real app, you would integrate with a payment provider here
-    // This is a simplified version
+    console.log("Service: Processing payment for booking:", bookingId);
     const bookingRef = doc(db, 'bookings', bookingId);
     await updateDoc(bookingRef, {
       paymentStatus: 'paid',
       paymentDetails,
+      status: 'confirmed',
       updatedAt: new Date()
     });
     
-    // Send confirmation email (would be handled by Cloud Functions in production)
-    console.log(`Payment confirmation email sent for booking ${bookingId}`);
-    
+    console.log("Service: Payment processed and booking updated");
     return true;
   } catch (error) {
+    console.error("Service: Error processing payment:", error);
     throw error;
   }
 };
@@ -50,17 +52,21 @@ export const processPayment = async (bookingId, paymentDetails) => {
 // Get user's bookings
 export const getUserBookings = async (userId) => {
   try {
+    console.log("Service: Getting bookings for user:", userId);
     const bookingsQuery = query(
       collection(db, 'bookings'),
       where('userId', '==', userId)
     );
     
     const bookingSnapshot = await getDocs(bookingsQuery);
-    return bookingSnapshot.docs.map(doc => ({
+    const bookings = bookingSnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
+    console.log("Service: Retrieved", bookings.length, "bookings");
+    return bookings;
   } catch (error) {
+    console.error("Service: Error getting user bookings:", error);
     throw error;
   }
 };
@@ -68,17 +74,58 @@ export const getUserBookings = async (userId) => {
 // Get booking by ID
 export const getBookingById = async (bookingId) => {
   try {
+    console.log("Service: Fetching booking document:", bookingId);
     const bookingDoc = await getDoc(doc(db, 'bookings', bookingId));
+    console.log("Service: Document exists?", bookingDoc.exists());
+    
     if (bookingDoc.exists()) {
-      return {
+      const bookingData = {
         id: bookingDoc.id,
         ...bookingDoc.data()
       };
+      console.log("Service: Retrieved booking data:", bookingData);
+      return bookingData;
     } else {
+      console.error("Service: Booking document not found");
       throw new Error('Booking not found');
     }
   } catch (error) {
+    console.error("Service: Error getting booking:", error);
     throw error;
   }
 };
 
+// Get all bookings (for admin)
+export const getAllBookings = async () => {
+  try {
+    console.log("Service: Getting all bookings");
+    const bookingsCollection = collection(db, 'bookings');
+    const bookingSnapshot = await getDocs(bookingsCollection);
+    const bookings = bookingSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    console.log("Service: Retrieved", bookings.length, "total bookings");
+    return bookings;
+  } catch (error) {
+    console.error("Service: Error getting all bookings:", error);
+    throw error;
+  }
+};
+
+// Update booking status
+export const updateBookingStatus = async (bookingId, status) => {
+  try {
+    console.log("Service: Updating booking status:", bookingId, status);
+    const bookingRef = doc(db, 'bookings', bookingId);
+    await updateDoc(bookingRef, {
+      status,
+      updatedAt: new Date()
+    });
+    console.log("Service: Booking status updated");
+    return true;
+  } catch (error) {
+    console.error("Service: Error updating booking status:", error);
+    throw error;
+  }
+};
