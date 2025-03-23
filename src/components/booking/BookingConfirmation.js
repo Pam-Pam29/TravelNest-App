@@ -15,17 +15,21 @@ const BookingConfirmation = () => {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
+        console.log("Fetching confirmation for booking ID:", bookingId);
         const data = await getBookingById(bookingId);
+        console.log("Confirmation data received:", data);
         
         // Verify that the booking belongs to the current user
         if (data.userId !== currentUser.uid) {
+          console.error("Unauthorized: Booking belongs to user", data.userId);
           setError('Unauthorized access to this booking');
           return;
         }
         
         setBooking(data);
       } catch (error) {
-        setError('Failed to fetch booking: ' + error.message);
+        console.error('Confirmation error details:', error);
+        setError('Failed to fetch booking confirmation: ' + error.message);
       } finally {
         setLoading(false);
       }
@@ -126,4 +130,3 @@ const BookingConfirmation = () => {
 };
 
 export default BookingConfirmation;
-
