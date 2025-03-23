@@ -9,7 +9,7 @@ const auth = admin.auth();
 const db = admin.firestore();
 
 const email = 'admin@travenest.com';
-const password = 'your-secure-password'; // Use a strong password!
+const password = '129949Victoria@'; // Use a strong password!
 const displayName = 'Admin User';
 
 async function createAdminUser() {
@@ -30,7 +30,7 @@ async function createAdminUser() {
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
     
-    console.log(Admin user created with UID: ${userRecord.uid});
+    console.log(`Admin user created with UID: ${userRecord.uid}`);
   } catch (error) {
     console.error('Error creating admin user:', error);
   }
