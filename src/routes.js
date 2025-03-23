@@ -14,6 +14,7 @@ import ConfirmationPage from './pages/ConfirmationPage';
 import UserDashboardPage from './pages/UserDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
+import PaymentTestPage from './pages/PaymentTestPage';
 
 const AppRoutes = () => {
   return (
