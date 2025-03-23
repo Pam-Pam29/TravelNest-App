@@ -43,7 +43,7 @@ export const processPayment = async (bookingId, paymentDetails) => {
     console.log("Service: Processing payment for booking:", bookingId);
     const bookingRef = doc(db, 'bookings', bookingId);
     await updateDoc(bookingRef, {
-      paymentStatus: 'pending',
+      paymentStatus: 'paid',
       paymentDetails,
       status: 'confirmed',
       updatedAt: new Date()
