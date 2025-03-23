@@ -1,43 +1,66 @@
-// src/components/auth/Register.js
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { registerUser } from '../../services/authService';
+// src/components/auth/Profile.js
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { updateUserProfile } from '../../services/userService';
 
-const Register = () => {
+const Profile = () => {
+  const { currentUser, userProfile } = useAuth();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userProfile) {
+      setName(userProfile.name || '');
+      setPhone(userProfile.phone || '');
+      setAddress(userProfile.address || '');
+    }
+  }, [userProfile]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (password !== confirmPassword) {
-      return setError('Passwords do not match');
-    }
-    
     try {
       setError('');
+      setSuccess('');
       setLoading(true);
-      await registerUser(email, password, name);
-      navigate('/dashboard');
+      
+      await updateUserProfile(currentUser.uid, {
+        name,
+        phone,
+        address
+      });
+      
+      setSuccess('Profile updated successfully');
     } catch (error) {
-      setError('Failed to create an account: ' + error.message);
+      setError('Failed to update profile: ' + error.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="register-container">
-      <div className="register-form">
-        <h2>Create Your Account</h2>
+    <div className="profile-container">
+      <div className="profile-form">
+        <h2>Your Profile</h2>
         {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
         
         <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={currentUser.email}
+              disabled
+            />
+            <small>Email cannot be changed</small>
+          </div>
+          
           <div className="form-group">
             <label htmlFor="name">Full Name</label>
             <input
@@ -50,36 +73,23 @@ const Register = () => {
           </div>
           
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="phone">Phone Number</label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              type="tel"
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
           
           <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
+            <label htmlFor="address">Address</label>
+            <textarea
+              id="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              rows="3"
+            ></textarea>
           </div>
           
           <button 
@@ -87,18 +97,13 @@ const Register = () => {
             className="btn-primary"
             disabled={loading}
           >
-            {loading ? 'Creating Account...' : 'Sign Up'}
+            {loading ? 'Updating...' : 'Update Profile'}
           </button>
         </form>
-        
-        <div className="form-footer">
-          <p>
-            Already have an account? <Link to="/login">Log In</Link>
-          </p>
-        </div>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Profile;
+
