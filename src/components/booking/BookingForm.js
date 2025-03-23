@@ -89,7 +89,7 @@ const BookingForm = () => {
       // Add alert to show the booking ID
       alert("Booking created with ID: " + bookingId + ". Click OK to proceed to payment.");
       
-      navigate(/payment/${bookingId});
+      navigate(`/payment/${bookingId}`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
       setError('Failed to create booking: ' + error.message);

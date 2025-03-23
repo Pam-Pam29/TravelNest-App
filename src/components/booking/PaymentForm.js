@@ -101,7 +101,7 @@ const PaymentForm = () => {
       // Store the booking ID for the confirmation page
       localStorage.setItem('lastBookingId', idToUse);
       
-      navigate(/confirmation/${idToUse});
+      navigate(`/confirmation/${idToUse}`);
     } catch (error) {
       console.error("Payment processing error:", error);
       setError('Payment processing failed: ' + error.message);
@@ -132,7 +132,7 @@ const PaymentForm = () => {
             onClick={() => {
               const manualId = localStorage.getItem('lastBookingId');
               if (manualId) {
-                window.location.href = /payment/${manualId};
+                window.location.href = `/payment/${manualId}`;
               }
             }}
           >
