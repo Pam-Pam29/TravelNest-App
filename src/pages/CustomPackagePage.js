@@ -1,6 +1,6 @@
 // pages/CustomPackagePage.js
 import React from 'react';
-import CustomPackageForm from '../packages/CustomPackageForm';
+import CustomPackageForm from '../components/packages/CustomPackageForm';
 
 function CustomPackagePage() {
   return (
