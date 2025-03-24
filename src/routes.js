@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PackagesPage from './pages/PackagesPage';
 import PackageDetailPage from './pages/PackageDetailPage';
+import CustomPackagePage from './pages/CustomPackagePage';
 import BookingPage from './pages/BookingPage';
 import PaymentPage from './pages/PaymentPage';
 import ConfirmationPage from './pages/ConfirmationPage';
@@ -26,6 +27,7 @@ const AppRoutes = () => {
       <Route path="/packages/:packageId" element={<PackageDetailPage />} />
       <Route path="/booking/:packageId" element={<BookingPage />} />
       <Route path="/payment/:bookingId" element={<PaymentPage />} />
+      <Route path="/custom-package" element={<CustomPackagePage />} />
       <Route path="/payment-test" element={<PaymentTestPage />} />
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />

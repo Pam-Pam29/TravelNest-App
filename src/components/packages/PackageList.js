@@ -1,6 +1,7 @@
 // src/components/packages/PackageList.js
 import React, { useState, useEffect } from 'react';
 import PackageCard from './PackageCard';
+import { Link } from 'react-router-dom';
 import { getAllPackages, filterPackages } from '../../services/packageService';
 
 const PackageList = () => {
@@ -148,8 +149,22 @@ const PackageList = () => {
           )}
         </div>
       )}
+
+    <div className="package-list">
+      <div className="package-list-header">
+        <h2>Our Travel Packages</h2>
+        <Link to="/custom-package" className="custom-package-button">
+          Create Custom Package
+        </Link>
+      </div>
+      
+      <div className="package-grid">
+        {packages.map(pkg => (
+          <PackageCard key={pkg.id} package={pkg} />
+        ))}
+      </div>
+    </div>
     </div>
   );
 };
-
 export default PackageList;
