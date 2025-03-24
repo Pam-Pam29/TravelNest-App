@@ -17,7 +17,7 @@ const Home = () => {
       </section>
       
       <section className="features-section">
-        <h2>Why Choose Travenest?</h2>
+        <h2>Why Choose Travelnest?</h2>
         <div className="features-container">
           <div className="feature-card">
             <div className="feature-icon">🏨</div>
@@ -102,7 +102,7 @@ const Home = () => {
           <div className="testimonial-card">
             <div className="testimonial-rating">★★★★★</div>
             <p className="testimonial-text">
-              "Travenest made our family vacation so easy. Everything was organized and
+              "Travelnest made our family vacation so easy. Everything was organized and
               we didn't have to worry about any details during our trip. Highly recommended!"
             </p>
             <div className="testimonial-author">- Sarah J.</div>
@@ -112,7 +112,7 @@ const Home = () => {
             <div className="testimonial-rating">★★★★★</div>
             <p className="testimonial-text">
               "The tour guides were exceptional and accommodations were top-notch. 
-              I'll definitely be booking my next adventure with Travenest."
+              I'll definitely be booking my next adventure with Travelnest."
             </p>
             <div className="testimonial-author">- Michael R.</div>
           </div>

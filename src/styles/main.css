@@ -165,6 +165,27 @@ img {
   overflow: hidden;
   padding: 2rem;
 }
+.custom-package-section {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.form-section {
+  margin-bottom: 25px;
+}
+
+.radio-group, .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.customize-toggle {
+  margin: 20px 0;
+}
 
 .booking-package-summary {
   background-color: #f8f9fa;

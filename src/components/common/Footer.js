@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Travenest</h3>
+          <h3>Travelnest</h3>
           <p>
             Simplifying travel planning with all-inclusive packages. Experience stress-free vacations with Travenest.
           </p>
@@ -49,7 +49,7 @@ const Footer = () => {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; {year} Travenest. All rights reserved.</p>
+        <p>&copy; {year} Travelnest. All rights reserved.</p>
       </div>
     </footer>
   );
