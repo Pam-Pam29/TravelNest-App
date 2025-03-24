@@ -70,29 +70,6 @@ export const filterPackages = async (criteria) => {
     throw error;
   }
 };
-// services/bookingServices.js (assuming you already have this file)
-
-// Add this function to your existing bookingServices.js file
-export const submitCustomPackage = async (formData) => {
-  try {
-    const response = await fetch('/api/custom-package', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-    
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('Error submitting custom package request:', error);
-    throw error;
-  }
-};
 
 // Admin: Add new package
 export const addPackage = async (packageData) => {
