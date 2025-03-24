@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitCustomPackage } from '../../services/bookingServices';
+import { submitCustomPackage } from '../../services/bookingService';
 
 function CustomPackageForm() {
   // State and handlers as in previous example
