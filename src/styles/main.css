@@ -1287,7 +1287,7 @@ img {
   justify-content: center;
   text-align: center;
   background-image: url ('/images/hero-bg.jpg');
-    background-size: cover;
+  background-size: cover;
   background-position: center;
   position: relative;
   color: white;
