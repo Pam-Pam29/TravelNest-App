@@ -166,10 +166,187 @@ img {
   padding: 2rem;
 }
 .custom-package-section {
-  margin-top: 20px;
+ /* General Body Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the entire form */
+.form-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
-  border: 1px solid #eee;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Header for the form */
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #2a5d84;
+  margin-bottom: 30px;
+}
+
+/* Label Styling */
+label {
+  font-weight: bold;
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 1.1em;
+}
+
+/* Input and Textarea Fields */
+input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+/* Checkbox and Radio Button Styling */
+input[type="checkbox"], input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Section Heading Styling */
+h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin-top: 40px;
+}
+
+/* Styling for the accommodation preferences section */
+.accommodation-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.accommodation-options label {
+  width: 48%;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+}
+
+.accommodation-options input {
+  margin-right: 10px;
+}
+
+/* Styling for the dining preferences */
+.dining-preferences label {
+  display: inline-block;
+  width: 45%;
+  margin-right: 10px;
+}
+
+.dining-preferences input {
+  margin-right: 10px;
+}
+
+/* Activity Preferences */
+.activities-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.activities-options label {
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+}
+
+/* Transportation Preferences */
+.transportation-options {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.transportation-options label {
+  width: 48%;
+  font-size: 1.1em;
+}
+
+/* Budget Section Styling */
+.budget-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.budget-section input[type="range"] {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.budget-section .priority-rank {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Special Requests and Package Add-Ons */
+.special-requests textarea,
+.package-addons input[type="checkbox"] {
+  margin-bottom: 20px;
+}
+
+.package-addons label {
+  display: block;
+  font-size: 1.1em;
+}
+
+/* Button Styling */
+button {
+  background-color: #2a5d84;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+button:hover {
+  background-color: #1e4663;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .accommodation-options label,
+  .dining-preferences label,
+  .transportation-options label {
+      width: 100%;
+  }
+
+  .activities-options {
+      grid-template-columns: 1fr 1fr;
+  }
+
+  .budget-section input[type="range"] {
+      width: 90%;
+  }
+}
+
+/* Additional Customizations */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .form-section {
@@ -1370,3 +1547,4 @@ img {
    max-width: 1200px;
    margin: 0 auto;
  }
+}
