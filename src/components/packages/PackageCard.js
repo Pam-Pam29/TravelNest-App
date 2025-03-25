@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PackageCard = ({ travelPackage }) => {
-  const { id, title, description, price, duration, region, imageUrl } = travelPackage;
+  const {id, title, description, price, duration, region, imageUrl } = travelPackage;
 
   return (
     <div className="package-card">
