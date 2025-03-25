@@ -1,3 +1,4 @@
+// src/components/packages/PackageList.js
 import React, { useState, useEffect } from 'react';
 import PackageCard from './PackageCard';
 import { getAllPackages, filterPackages } from '../../services/packageService';
@@ -11,7 +12,6 @@ const PackageList = () => {
     budget: '',
     duration: ''
   });
-  const [filteredPackages, setFilteredPackages] = useState([]);
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -19,7 +19,6 @@ const PackageList = () => {
         setLoading(true);
         const data = await getAllPackages();
         setPackages(data);
-        setFilteredPackages(data);
         setError('');
       } catch (error) {
         setError('Failed to fetch packages: ' + error.message);
@@ -31,56 +30,105 @@ const PackageList = () => {
     fetchPackages();
   }, []);
 
-  // Handle filter input changes
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    const newFilters = { ...filters, [name]: value };
-    setFilters(newFilters);
+    setFilters({
+      ...filters,
+      [name]: value
+    });
+  };
 
-    // Apply filters
-    const filtered = filterPackages(packages, newFilters);
-    setFilteredPackages(filtered);
+  const handleFilter = async () => {
+    try {
+      setLoading(true);
+      const filteredPackages = await filterPackages({
+        region: filters.region || null,
+        budget: filters.budget ? parseFloat(filters.budget) : null,
+        duration: filters.duration ? parseInt(filters.duration) : null
+      });
+      setPackages(filteredPackages);
+      setError('');
+    } catch (error) {
+      setError('Failed to filter packages: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = async () => {
+    setFilters({
+      region: '',
+      budget: '',
+      duration: ''
+    });
+    
+    try {
+      setLoading(true);
+      const data = await getAllPackages();
+      setPackages(data);
+      setError('');
+    } catch (error) {
+      setError('Failed to fetch packages: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="package-list-container">
       <h2>Explore Travel Packages</h2>
       
-      {/* Filter inputs */}
       <div className="filter-container">
-        <select 
-          name="region" 
-          value={filters.region} 
-          onChange={handleFilterChange}
-        >
-          <option value="">All Regions</option>
-          <option value="Europe">Europe</option>
-          <option value="Asia">Asia</option>
-          <option value="North America">North America</option>
-          {/* Add more region options */}
-        </select>
-
-        <select 
-          name="budget" 
-          value={filters.budget} 
-          onChange={handleFilterChange}
-        >
-          <option value="">All Budgets</option>
-          <option value="budget">Budget</option>
-          <option value="mid-range">Mid-Range</option>
-          <option value="luxury">Luxury</option>
-        </select>
-
-        <select 
-          name="duration" 
-          value={filters.duration} 
-          onChange={handleFilterChange}
-        >
-          <option value="">All Durations</option>
-          <option value="short">Short (1-3 days)</option>
-          <option value="medium">Medium (4-7 days)</option>
-          <option value="long">Long (8+ days)</option>
-        </select>
+        <div className="filter-group">
+          <label htmlFor="region">Destination</label>
+          <select
+            id="region"
+            name="region"
+            value={filters.region}
+            onChange={handleFilterChange}
+          >
+            <option value="">All Destinations</option>
+            <option value="Europe">Europe</option>
+            <option value="Asia">Asia</option>
+            <option value="Africa">Africa</option>
+            <option value="North America">North America</option>
+            <option value="South America">South America</option>
+            <option value="Australia">Australia</option>
+          </select>
+        </div>
+        
+        <div className="filter-group">
+          <label htmlFor="budget">Max Budget</label>
+          <input
+            type="number"
+            id="budget"
+            name="budget"
+            value={filters.budget}
+            onChange={handleFilterChange}
+            placeholder="Budget in $"
+          />
+        </div>
+        
+        <div className="filter-group">
+          <label htmlFor="duration">Max Duration (days)</label>
+          <input
+            type="number"
+            id="duration"
+            name="duration"
+            value={filters.duration}
+            onChange={handleFilterChange}
+            placeholder="Days"
+          />
+        </div>
+        
+        <div className="filter-buttons">
+          <button onClick={handleFilter} className="btn-filter">
+            Filter
+          </button>
+          <button onClick={handleReset} className="btn-reset">
+            Reset
+          </button>
+        </div>
       </div>
       
       {error && <div className="error-message">{error}</div>}
@@ -89,8 +137,8 @@ const PackageList = () => {
         <div className="loading">Loading packages...</div>
       ) : (
         <div className="packages-grid">
-          {filteredPackages.length > 0 ? (
-            filteredPackages.map((pkg) => (
+          {packages.length > 0 ? (
+            packages.map((pkg) => (
               <PackageCard key={pkg.id} travelPackage={pkg} />
             ))
           ) : (
