@@ -6,7 +6,7 @@
   "functions": [
     {
       "source": "functions",
-      "codebase": "default",
+      "codebase": "travenest-app-1",
       "ignore": [
         "node_modules",
         ".git",

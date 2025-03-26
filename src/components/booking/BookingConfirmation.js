@@ -1,7 +1,9 @@
 // src/components/booking/BookingConfirmation.js
+// src/components/booking/BookingConfirmation.js
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getBookingById } from '../../services/bookingService';
+import { sendBookingConfirmationEmail } from '../../services/emailService';
 import { useAuth } from '../../contexts/AuthContext';
 
 const BookingConfirmation = () => {
@@ -11,6 +13,45 @@ const BookingConfirmation = () => {
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
+
+  useEffect(() => {
+    const fetchBooking = async () => {
+      try {
+        const data = await getBookingById(bookingId);
+        
+        // Verify that the booking belongs to the current user
+        if (data.userId !== currentUser.uid) {
+          setError('Unauthorized access to this booking');
+          return;
+        }
+        
+        setBooking(data);
+        
+        // Send confirmation email if not already sent
+        if (data && !data.confirmationEmailSent) {
+          const emailResult = await sendBookingConfirmationEmail(data);
+          if (emailResult.success) {
+            setEmailSent(true);
+            // Optionally update the booking to mark email as sent
+            // await updateBookingEmailStatus(bookingId, true);
+          }
+        } else {
+          setEmailSent(true); // Email was already sent previously
+        }
+      } catch (error) {
+        console.error('Error details:', error);
+        setError('Failed to fetch booking confirmation: ' + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooking();
+  }, [bookingId, currentUser]);
+
+  // Rest of your component remains the same
+  // ...
 
   useEffect(() => {
     const fetchBooking = async () => {

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getBookingById, processPayment } from '../../services/bookingService';
 import { useAuth } from '../../contexts/AuthContext';
+import { sendBookingConfirmationEmail } from '../../services/emailService';
 
 const PaymentForm = () => {
   const { bookingId } = useParams();
@@ -97,6 +98,34 @@ const PaymentForm = () => {
       
       await processPayment(idToUse, paymentDetails);
       console.log("Payment processed successfully");
+      // In your PaymentForm.js, add after successful payment processing
+
+
+// Inside your handlePaymentSuccess function
+const handlePaymentSuccess = async (paymentIntent) => {
+  try {
+    // Your existing code to update booking status
+    // ...
+    
+    // Get the updated booking with payment info
+    const updatedBooking = await getBookingById(booking.id);
+    
+    // Send payment confirmation email
+    await sendBookingConfirmationEmail({
+      ...updatedBooking,
+      paymentStatus: 'paid'
+    });
+    
+    setPaymentSuccess(true);
+    // Navigate to confirmation page after a short delay
+    setTimeout(() => {
+      navigate(`/confirmation/${booking.id}`);
+    }, 2000);
+  } catch (err) {
+    console.error('Error updating booking:', err);
+    setError('Payment successful, but there was an issue updating your booking. Please contact support.');
+  }
+};
       
       // Store the booking ID for the confirmation page
       localStorage.setItem('lastBookingId', idToUse);

@@ -134,6 +134,22 @@ const CustomPackageQuestionnaire = () => {
       
       console.log("Custom package request submitted with ID:", docRef.id);
       setSuccess(true);
+
+      // Send confirmation email
+    const emailResult = await sendCustomPackageRequestEmail({
+      ...formData,
+      id: docRef.id,
+      email: currentUser.email,
+      fullName: userProfile?.name || formData.fullName
+    });
+    
+    if (emailResult.success) {
+      console.log("Confirmation email sent successfully");
+    } else {
+      console.warn("Failed to send confirmation email", emailResult.error);
+    }
+    
+    setSuccess(true);
       
       // Scroll to top to show success message
       window.scrollTo(0, 0);
