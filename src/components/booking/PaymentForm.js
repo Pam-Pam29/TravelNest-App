@@ -38,8 +38,9 @@ const PaymentForm = () => {
           return;
         }
         
-        const data = await getBookingById(idToUse);
-        console.log("Booking data received:", data);
+        const data = await getBookingById(bookingId);
+        console.log("Retrieved booking data:", data);
+        console.log("User email from booking:", data.userEmail);
         
         // Verify that the booking belongs to the current user
         if (data.userId !== currentUser.uid) {
@@ -109,7 +110,7 @@ const handlePaymentSuccess = async (paymentIntent) => {
     
     // Get the updated booking with payment info
     const updatedBooking = await getBookingById(booking.id);
-    
+      
     // Send payment confirmation email
     await sendBookingConfirmationEmail({
       ...updatedBooking,

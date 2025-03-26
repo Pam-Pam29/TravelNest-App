@@ -19,6 +19,8 @@ const BookingConfirmation = () => {
     const fetchBooking = async () => {
       try {
         const data = await getBookingById(bookingId);
+        console.log("Retrieved booking data:", data);
+        console.log("User email from booking:", data.userEmail);
         
         // Verify that the booking belongs to the current user
         if (data.userId !== currentUser.uid) {

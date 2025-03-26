@@ -6,6 +6,13 @@ emailjs.init("66XU7wP3JCGlL3Pqw"); // Replace with your actual public key from E
 
 export const sendBookingConfirmationEmail = async (booking) => {
   try {
+    console.log("Full booking object:", booking);
+    
+    // Check if email exists
+    if (!booking.userEmail) {
+      console.error("Error: User email is missing from booking object");
+      return { success: false, error: "Recipient email address is missing"};
+    }
     // Prepare the template parameters
     const templateParams = {
       to_name: booking.userName,
@@ -18,6 +25,7 @@ export const sendBookingConfirmationEmail = async (booking) => {
       travelers: booking.travelers,
       total_price: booking.totalPrice
     };
+    console.log("Email template params:", templateParams);
 
     // Send the email
     const response = await emailjs.send(
@@ -26,13 +34,12 @@ export const sendBookingConfirmationEmail = async (booking) => {
       templateParams
     );
 
-    return { success: true ,response: response};
+    console.log('Email sent successfully:', response);
+    return { success: true };
   } catch (error) {
-  
-    return { 
-      success: false,
-       error: error instanceof Error ? error : new Error('Failed to send email')};
-  }
+    console.error('Failed to send email:', error);
+    return { success: false, error };
+}
 };
 
 export const sendCustomPackageRequestEmail = async (request) => {
