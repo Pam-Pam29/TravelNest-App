@@ -15,6 +15,7 @@ import UserDashboardPage from './pages/UserDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PaymentTestPage from './pages/PaymentTestPage';
+import CustomPackagePage from './pages/CustomPackagePage';
 
 const AppRoutes = () => {
   return (
@@ -30,6 +31,7 @@ const AppRoutes = () => {
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />
       <Route path="/admin" element={<AdminDashboardPage />} />
+      <Route path= "/custom-package" element={<CustomPackagePage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
