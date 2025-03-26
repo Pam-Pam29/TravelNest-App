@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Travelnest</h3>
           <p>
-            Simplifying travel planning with all-inclusive packages. Experience stress-free vacations with Travenest.
+            Simplifying travel planning with all-inclusive packages. Experience stress-free vacations with Travlenest.
           </p>
         </div>
         
