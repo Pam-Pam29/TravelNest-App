@@ -6,8 +6,17 @@ import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 
 const CustomPackageQuestionnaire = () => {
-  const { currentUser, userProfile } = useAuth();
+  const { currentUser, userProfile, loading } = useAuth();
   const navigate = useNavigate();
+  useEffect (() => {
+    console.log('CustomPackageQuestionnaire - Current User', currentUser)
+    console.log('CustomPackageQuestionnaire - User Profile', userProfile)
+    console.log('CustomPackageQuestionnaire - Loading', loading)
+    if (!loading && !currentUser) {
+        console.log('Redirecting to login from questionnaire');
+        navigate('/login', { state: { from: '/custom-package' } });
+      }
+    }, [currentUser, userProfile, loading, navigate]);
   
   const [formData, setFormData] = useState({
     // Personal Information
