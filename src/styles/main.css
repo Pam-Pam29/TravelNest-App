@@ -1,5 +1,5 @@
 /* src/styles/main.css */
-
+@import './questionnaire.css';
 /* Reset & Base Styles */
 * {
   margin: 0;
