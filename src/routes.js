@@ -16,6 +16,8 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PaymentTestPage from './pages/PaymentTestPage';
 import CustomPackagePage from './pages/CustomPackagePage';
+import PrivateRoute from './components/PrivateRoute';
+
 
 const AppRoutes = () => {
   return (
@@ -32,6 +34,14 @@ const AppRoutes = () => {
       <Route path="/dashboard" element={<UserDashboardPage />} />
       <Route path="/admin" element={<AdminDashboardPage />} />
       <Route path= "/custom-package" element={<CustomPackagePage />} />
+      <Route 
+  path="/custom-package" 
+  element={
+    <PrivateRoute>
+      <CustomPackagePage />
+    </PrivateRoute>
+  } 
+/>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
