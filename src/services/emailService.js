@@ -6,26 +6,18 @@ emailjs.init("66XU7wP3JCGlL3Pqw"); // Replace with your actual public key from E
 
 export const sendBookingConfirmationEmail = async (booking) => {
   try {
-    console.log("Full booking object:", booking);
-    
-    // Check if email exists
-    if (!booking.userEmail) {
-      console.error("Error: User email is missing from booking object");
-      return { success: false, error: "Recipient email address is missing"};
-    }
+   
     // Prepare the template parameters
     const templateParams = {
-      to_name: booking.userName,
-      to_email: booking.userEmail,
-      booking_id: booking.id,
-      package_title: booking.packageTitle,
-      start_date: booking.startDate instanceof Date 
-        ? booking.startDate.toLocaleDateString() 
-        : new Date(booking.startDate).toLocaleDateString(),
-      travelers: booking.travelers,
-      total_price: booking.totalPrice
+      to_name: booking.userName || "",
+      to_email: booking.userEmail ||"fakunlevic@gmail.com",
+      booking_id: booking.id||"",
+      package_title: booking.packageTitle || "",
+      start_date: booking.startDate ? new Date(booking.startDate).toLocaleDateString() :"",
+      travelers: booking.travelers || "",
+      total_price: booking.totalPrice ||"",
     };
-    console.log("Email template params:", templateParams);
+    console.log("Attempting to send email with params:", templateParams);
 
     // Send the email
     const response = await emailjs.send(
@@ -34,10 +26,10 @@ export const sendBookingConfirmationEmail = async (booking) => {
       templateParams
     );
 
-    console.log('Email sent successfully:', response);
+    console.log('EmailJs response:', response);
     return { success: true };
   } catch (error) {
-    console.error('Failed to send email:', error);
+    console.error('EmailJs error:', error);
     return { success: false, error };
 }
 };

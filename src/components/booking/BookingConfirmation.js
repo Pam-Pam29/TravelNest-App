@@ -19,8 +19,7 @@ const BookingConfirmation = () => {
     const fetchBooking = async () => {
       try {
         const data = await getBookingById(bookingId);
-        console.log("Retrieved booking data:", data);
-        console.log("User email from booking:", data.userEmail);
+console.log("Complete booking data:", JSON.stringify(data, null, 2));
         
         // Verify that the booking belongs to the current user
         if (data.userId !== currentUser.uid) {
@@ -177,6 +176,17 @@ const BookingConfirmation = () => {
         <Link to="/packages" className="btn-secondary">
           Browse More Packages
         </Link>
+        <button
+        onClick={() => {
+          sendBookingConfirmationEmail({}).then(result => {
+            console.log("Email test result:", result);
+          });
+        }}
+        className="btn-secondary"
+        style={{marginTop: '10px'}}
+      >
+        Send Test Email
+      </button>
       </div>
     </div>
   );

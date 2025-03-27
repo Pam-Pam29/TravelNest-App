@@ -7,6 +7,7 @@ import AppRoutes from './routes';
 import { AuthProvider } from './contexts/AuthContext';
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component from '\components\ScrollToTop.js';
 import './styles/main.css';
+import './styles/questionnaire.css';
 
 const App = () => {
   return (

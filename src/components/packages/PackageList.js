@@ -1,6 +1,7 @@
 // src/components/packages/PackageList.js
 import React, { useState, useEffect } from 'react';
 import PackageCard from './PackageCard';
+import {Link} from 'react-router-dom';
 import { getAllPackages, filterPackages } from '../../services/packageService';
 
 const PackageList = () => {
@@ -146,6 +147,11 @@ const PackageList = () => {
               No packages found. Try adjusting your filters.
             </div>
           )}
+          <div className="custom-package-banner">
+  <h3>Not seeing what you've been looking for?</h3>
+  <p>Let us help create a package just for you!</p>
+  <Link to="/custom-package" className="btn-primary">Create Custom Package</Link>
+</div>
         </div>
       )}
     </div>

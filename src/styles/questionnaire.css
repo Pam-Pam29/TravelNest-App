@@ -181,3 +181,162 @@
           width: 100%;
   }
 }
+
+/* Add these to your questionnaire.css */
+
+.custom-package-banner {
+  margin-top: 2rem;
+  padding: 2.5rem;
+  background-color: #f0f7ff;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #1e88e5;
+}
+
+.custom-package-banner h3 {
+  color: #1e88e5;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+}
+
+.custom-package-banner p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.custom-package-banner .btn-primary {
+  font-weight: bold;
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.custom-package-banner .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+}
+
+/* Styling for the questionnaire form */
+.questionnaire-container {
+  max-width: 900px;
+  margin: 2rem auto 3rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+}
+
+.questionnaire-container h1 {
+  margin-bottom: 1.5rem;
+  color: #1e88e5;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.questionnaire-intro {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.form-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+  border-left: 4px solid #1e88e5;
+  padding-left: 1rem;
+  background-color: #f5f9ff;
+  padding: 0.8rem 1rem;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Improve checkbox and radio button styling */
+.checkbox-option, .radio-option {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkbox-option input[type="checkbox"],
+.radio-option input[type="radio"] {
+  margin-top: 4px;
+  margin-right: 10px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Add more visual separation between sections */
+.form-actions {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #1e88e5;
+  color: white;
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #1565c0;
+}
+
+/* Success message styling */
+.success-container {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 3rem auto;
+}
+
+.success-icon {
+  font-size: 5rem;
+  color: #4caf50;
+  margin-bottom: 1.5rem;
+}
+
+.success-container h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 2rem;
+}
+
+.success-container p {
+  margin-bottom: 2.5rem;
+  color: #555;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success-actions {
+  display: flex;
+  justify-content: center; 
+  gap: 1.5rem;
+}
