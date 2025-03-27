@@ -1,59 +1,96 @@
-// src/components/common/Footer.js
+// Updated Footer Component with proper CSS class references
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import '../../styles/Footer.css';
+// Import icons if you're using a library like FontAwesome or similar
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
-  const year = new Date().getFullYear();
-
+  const { currentUser } = useAuth();
+  
   return (
-    <footer className="footer">
+    <footer className="site-footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Travelnest</h3>
-          <p>
-            Simplifying travel planning with all-inclusive packages. Experience stress-free vacations with Travlenest.
-          </p>
+          <h3>Travenest</h3>
+          <p>Discover amazing travel experiences with our all-inclusive packages.</p>
+          <div className="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+          </div>
         </div>
         
         <div className="footer-section">
           <h3>Quick Links</h3>
-          <ul>
+          <ul className="footer-links">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/packages">Travel Packages</Link></li>
             <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/terms">Terms & Conditions</Link></li>
-            <li><Link to="/privacy">Privacy Policy</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
+            {currentUser && (
+              <li><Link to="/dashboard">My Dashboard</Link></li>
+            )}
+            {!currentUser && (
+              <>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Register</Link></li>
+              </>
+            )}
           </ul>
         </div>
         
         <div className="footer-section">
-          <h3>Contact Us</h3>
-          <p>123 Travel Street</p>
-          <p>Adventure City, AC 12345</p>
-          <p>Email: info@travenest.com</p>
-          <p>Phone: +1 (555) 123-4567</p>
+          <h3>For Travelers</h3>
+          <ul className="footer-links">
+            <li><Link to="/packages">Explore Packages</Link></li>
+            <li><Link to="/custom-package">Custom Packages</Link></li>
+            {currentUser && (
+              <li><Link to="/dashboard">My Bookings</Link></li>
+            )}
+            {/* Add link to completed bookings page if logged in */}
+            {currentUser && (
+              <li>
+                <Link to="/dashboard/completed-bookings" className="footer-review-link">
+                  <span className="footer-review-icon">★</span> Write a Review
+                </Link>
+              </li>
+            )}
+            <li><Link to="/faq">FAQ</Link></li>
+          </ul>
         </div>
         
         <div className="footer-section">
-          <h3>Newsletter</h3>
-          <p>Subscribe to get special offers and travel tips.</p>
-          <div className="newsletter-form">
-            <input 
-              type="email" 
-              placeholder="Your email address" 
-            />
-            <button type="submit">Subscribe</button>
-          </div>
+          <h3>For Service Providers</h3>
+          <ul className="footer-links">
+            <li><Link to="/provider/register">Join as Provider</Link></li>
+            {currentUser ? (
+              <li><Link to="/provider/dashboard">Provider Dashboard</Link></li>
+            ) : (
+              <li><Link to="/login">Provider Login</Link></li>
+            )}
+            <li><Link to="/provider/help">Help Center</Link></li>
+          </ul>
         </div>
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; {year} Travelnest. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Travenest. All rights reserved.</p>
+        <div className="footer-bottom-links">
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-of-service">Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
-
+export default Footer;

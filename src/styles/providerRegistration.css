@@ -1,0 +1,267 @@
+/* src/styles/providerRegistration.css */
+
+.provider-registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f8f9fa;
+  }
+  
+  .provider-registration-card {
+    width: 100%;
+    max-width: 700px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+  }
+  
+  .provider-registration-title {
+    text-align: center;
+    color: #2a2a5c;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  
+  /* Progress Indicator */
+  .progress-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: #757575;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .step-label {
+    font-size: 0.8rem;
+    color: #757575;
+    transition: all 0.3s ease;
+  }
+  
+  .progress-step.active .step-number {
+    background-color: #4a90e2;
+    color: white;
+  }
+  
+  .progress-step.active .step-label {
+    color: #4a90e2;
+    font-weight: 600;
+  }
+  
+  .progress-line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #e0e0e0;
+    position: relative;
+    z-index: 0;
+  }
+  
+  .progress-step.active + .progress-line {
+    background-color: #4a90e2;
+  }
+  
+  /* Form Styling */
+  .form-step {
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .step-title {
+    color: #2a2a5c;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .half {
+    flex: 1;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  /* File Upload */
+  .file-upload {
+    position: relative;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .file-upload:hover {
+    border-color: #4a90e2;
+  }
+  
+  .file-upload input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .file-upload-info {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  
+  .file-name {
+    color: #4a90e2;
+    font-weight: 500;
+  }
+  
+  .upload-prompt {
+    display: block;
+    color: #888;
+  }
+  
+  .upload-prompt:before {
+    content: "📎";
+    margin-right: 5px;
+  }
+  
+  /* Buttons */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-prev {
+    background-color: #f0f0f0;
+    color: #555;
+  }
+  
+  .btn-prev:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .btn-next {
+    background-color: #4a90e2;
+    color: white;
+  }
+  
+  .btn-next:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .btn-submit {
+    background-color: #27ae60;
+    color: white;
+  }
+  
+  .btn-submit:hover {
+    background-color: #219653;
+  }
+  
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Error Message */
+  .error-message {
+    background-color: #ffeeee;
+    color: #e74c3c;
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #e74c3c;
+  }
+  
+  .verification-info {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #4a90e2;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+}
+  };

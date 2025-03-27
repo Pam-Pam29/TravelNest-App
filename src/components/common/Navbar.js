@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="navbar-menu">
         <Link to="/" className="navbar-item">Home</Link>
         <Link to="/packages" className="navbar-item">Packages</Link>
-        <Link tp= "/custom-package" className="navbar-item">Custom Package</Link>
+        <Link to= "/custom-package" className="navbar-item">Custom Package</Link>
         <Link to="/about" className="navbar-item">About</Link>
         <Link to="/contact" className="navbar-item">Contact</Link>
       </div>

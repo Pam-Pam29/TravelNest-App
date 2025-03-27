@@ -1,0 +1,112 @@
+import React from 'react';
+
+const BookingDetailsModal = ({ booking, onClose, isProvider, onStatusChange }) => {
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const handleConfirmBooking = () => {
+    onStatusChange(booking.id, 'confirmed');
+    onClose();
+  };
+
+  const handleCancelBooking = () => {
+    onStatusChange(booking.id, 'cancelled');
+    onClose();
+  };
+
+  const handleCompleteBooking = () => {
+    onStatusChange(booking.id, 'completed');
+    onClose();
+  };
+
+  return (
+    <div className="modal-backdrop">
+      <div className="modal-content booking-details">
+        <button className="close-button" onClick={onClose}>&times;</button>
+        
+        <h2>Booking Details</h2>
+        
+        <div className="booking-header">
+          <div className="booking-id">
+            <h3>Booking ID</h3>
+            <p>{booking.id}</p>
+          </div>
+          <div className="booking-status">
+            <span className={status-badge ${booking.status}}>
+              {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+            </span>
+          </div>
+        </div>
+        
+        <div className="booking-grid">
+          <div className="booking-section">
+            <h3>Package Information</h3>
+            <p><strong>Package:</strong> {booking.packageTitle}</p>
+            <p><strong>Travel Date:</strong> {formatDate(booking.startDate)}</p>
+            <p><strong>Travelers:</strong> {booking.travelers}</p>
+            <p><strong>Total Price:</strong> ${booking.totalPrice.toFixed(2)}</p>
+            <p><strong>Payment Status:</strong> {booking.paymentStatus}</p>
+          </div>
+          
+          {isProvider && (
+            <div className="booking-section">
+              <h3>Traveler Information</h3>
+              <p><strong>Name:</strong> {booking.userName}</p>
+              <p><strong>Email:</strong> {booking.userEmail}</p>
+              {booking.userPhone && <p><strong>Phone:</strong> {booking.userPhone}</p>}
+            </div>
+          )}
+          
+          {booking.specialRequests && (
+            <div className="booking-section full-width">
+              <h3>Special Requests</h3>
+              <p>{booking.specialRequests}</p>
+            </div>
+          )}
+        </div>
+        
+        {isProvider && (
+          <div className="booking-actions">
+            <h3>Manage Booking</h3>
+            
+            {booking.status === 'pending' && (
+              <div className="action-buttons">
+                <button
+                  className="confirm-button"
+                  onClick={handleConfirmBooking}
+                >
+                  Confirm Booking
+                </button>
+                <button
+                  className="cancel-button"
+                  onClick={handleCancelBooking}
+                >
+                  Cancel Booking
+                </button>
+              </div>
+            )}
+            
+            {booking.status === 'confirmed' && new Date(booking.startDate) < new Date() && (
+              <div className="action-buttons">
+                <button
+                  className="complete-button"
+                  onClick={handleCompleteBooking}
+                >
+                  Mark as Completed
+                </button>
+              </div>
+            )}
+            
+            {['completed', 'cancelled'].includes(booking.status) && (
+              <p>This booking is {booking.status} and cannot be modified.</p>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default BookingDetailsModal;

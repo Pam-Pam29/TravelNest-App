@@ -1,0 +1,90 @@
+/* src/styles/Home.css */
+:root {
+    --primary-blue: #3498db;
+    --secondary-blue: #2980b9;
+    --accent-orange: #f39c12;
+    --text-white: #ffffff;
+  }
+  
+  .home-page {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f4f6f7;
+  }
+  
+  .hero-section {
+    background-image: url('/public/images/hero-background.webp');
+    background-size: cover;
+    background-position: center;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    color: var(--text-white);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg, 
+      rgba(0, 0, 0, 0.6), 
+      rgba(41, 128, 185, 0.4)
+    );
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 40px;
+  }
+  
+  .destination-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .destination-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .destination-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .testimonials-section {
+    background-image: url('/public/images/testimonial-background.webp');
+    background-size: cover;
+    background-position: center;
+    color: var(--text-white);
+    padding: 60px 0;
+  }
+  
+  .testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }

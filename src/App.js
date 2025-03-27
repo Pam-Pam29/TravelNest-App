@@ -7,7 +7,16 @@ import AppRoutes from './routes';
 import { AuthProvider } from './contexts/AuthContext';
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component from '\components\ScrollToTop.js';
 import './styles/main.css';
+import './styles/Home.css';
 import './styles/questionnaire.css';
+import './styles/reviews.css';
+import './styles/providerRegistration.css';
+import './styles/adminVerification.css';
+import './styles/verificationPending.css';
+import './styles/reviewList.css';
+import './styles/userReview.css';
+import './styles/completedBookings.css';
+
 
 const App = () => {
   return (

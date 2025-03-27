@@ -1,6 +1,5 @@
-// src/routes.js
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Pages
 import Home from './pages/Home';
@@ -16,7 +15,18 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import PaymentTestPage from './pages/PaymentTestPage';
 import CustomPackagePage from './pages/CustomPackagePage';
-import PrivateRoute from './components/PrivateRoute';
+import CompletedBookingsPage from './pages/CompletedBookingsPage'; // New import
+
+// Provider Pages
+import ProviderDashboardPage from './pages/ProviderDashboardPage';
+import ProviderProfilePage from './pages/ProviderProfilePage';
+import ProviderRegistrationPage from './pages/ProviderRegistrationPage';
+import ProviderAnalyticsPage from './pages/ProviderAnalyticsPage';
+
+// New Components
+import VerificationPending from './components/provider/VerificationPending';
+import ProviderVerification from './components/admin/ProviderVerification';
+import UserReview from './components/reviews/UserReview';
 
 
 const AppRoutes = () => {
@@ -32,20 +42,26 @@ const AppRoutes = () => {
       <Route path="/payment-test" element={<PaymentTestPage />} />
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />
+      <Route path="/dashboard/completed-bookings" element={<CompletedBookingsPage />} /> {/* New route */}
+      
+      {/* User Review Route */}
+      <Route path="/booking/:bookingId/review" element={<UserReview />} />
+      
+      {/* Provider Routes */}
+      <Route path="/provider/dashboard" element={<ProviderDashboardPage />} />
+      <Route path="/provider/profile" element={<ProviderProfilePage />} />
+      <Route path="/provider/analytics" element={<ProviderAnalyticsPage />} />
+      <Route path="/provider/register" element={<ProviderRegistrationPage />} />
+      <Route path="/provider/verification-pending" element={<VerificationPending />} />
+      
+      {/* Admin Routes */}
       <Route path="/admin" element={<AdminDashboardPage />} />
-      <Route path= "/custom-package" element={<CustomPackagePage />} />
-      <Route 
-  path="/custom-package" 
-  element={
-    <PrivateRoute>
-      <CustomPackagePage />
-    </PrivateRoute>
-  } 
-/>
+      <Route path="/admin/providers/verification" element={<ProviderVerification />} />
+      
+      <Route path="/custom-package" element={<CustomPackagePage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
 
-export default AppRoutes;
-
+export default AppRoutes;
