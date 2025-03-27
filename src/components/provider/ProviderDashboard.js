@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 
 const ProviderProfile = () => {
   const [profileData, setProfileData] = useState({
-    businessName: 'Wanderlust Adventures',
-    businessType: 'Tour Operator',
-    contactName: 'Sarah Thompson',
-    email: 'sarah@wanderlustadventures.com',
-    phone: '+1 (555) 123-4567',
+    businessName: '',
+    businessType: '',
+    contactName: '',
+    email: '',
+    phone: '',
     address: {
-      street: '123 Travel Lane',
-      city: 'Adventure City',
-      state: 'Explorers State',
-      country: 'Travelonia',
-      zipCode: '12345'
+      street: '',
+      city: '',
+      state: '',
+      country: '',
+      zipCode: ''
     },
-    description: 'We specialize in creating unforgettable travel experiences that connect travelers with unique destinations and local cultures.',
-    website: 'www.wanderlustadventures.com'
+    description: '',
+    website: ''
   });
 
   const [isEditing, setIsEditing] = useState(false);

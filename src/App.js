@@ -9,12 +9,9 @@ import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop co
 import './styles/main.css';
 import './styles/Home.css';
 import './styles/questionnaire.css';
-import './styles/reviews.css';
 import './styles/providerRegistration.css';
 import './styles/adminVerification.css';
 import './styles/verificationPending.css';
-import './styles/reviewList.css';
-import './styles/userReview.css';
 import './styles/completedBookings.css';
 
 

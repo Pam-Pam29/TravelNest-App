@@ -26,7 +26,6 @@ import ProviderAnalyticsPage from './pages/ProviderAnalyticsPage';
 // New Components
 import VerificationPending from './components/provider/VerificationPending';
 import ProviderVerification from './components/admin/ProviderVerification';
-import UserReview from './components/reviews/UserReview';
 
 
 const AppRoutes = () => {
@@ -43,9 +42,6 @@ const AppRoutes = () => {
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />
       <Route path="/dashboard/completed-bookings" element={<CompletedBookingsPage />} /> {/* New route */}
-      
-      {/* User Review Route */}
-      <Route path="/booking/:bookingId/review" element={<UserReview />} />
       
       {/* Provider Routes */}
       <Route path="/provider/dashboard" element={<ProviderDashboardPage />} />

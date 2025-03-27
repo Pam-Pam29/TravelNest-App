@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPackageById } from '../../services/packageService';
 import { useAuth } from '../../contexts/AuthContext';
-import ReviewsList from '../reviews/ReviewsList';
-import ReviewForm from '../reviews/UserReview';
+
 
 const PackageDetail = () => {
   const { packageId } = useParams();
@@ -139,15 +138,8 @@ const PackageDetail = () => {
           Book Now
         </button>
       </div>
-    
-<div className="package-reviews-section">
-  <h2>Traveler Reviews</h2>
-  <ReviewsList packageId={packageId} />
-  <ReviewForm packageId={packageId} packageTitle={packageDetail.title} />
-</div>
-</div>
+    </div>
   );
 };
-
 export default PackageDetail;
 

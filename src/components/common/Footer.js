@@ -56,15 +56,6 @@ const Footer = () => {
             {currentUser && (
               <li><Link to="/dashboard">My Bookings</Link></li>
             )}
-            {/* Add link to completed bookings page if logged in */}
-            {currentUser && (
-              <li>
-                <Link to="/dashboard/completed-bookings" className="footer-review-link">
-                  <span className="footer-review-icon">★</span> Write a Review
-                </Link>
-              </li>
-            )}
-            <li><Link to="/faq">FAQ</Link></li>
           </ul>
         </div>
         
