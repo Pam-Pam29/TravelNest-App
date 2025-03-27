@@ -78,7 +78,7 @@ const Home = () => {
           </div>
           
           <div className="destination-card">
-            <div className="destination-image" style={{ backgroundImage: 'url (/images/north-america.jpeg )' }}></div>
+            <div className="destination-image" style={{ backgroundImage: 'url(/images/north-america.webp)' }}></div>
             <div className="destination-content">
               <h3>North America</h3>
               <p>Discover diverse cities and natural wonders</p>
@@ -87,7 +87,7 @@ const Home = () => {
           </div>
           
           <div className="destination-card">
-            <div className="destination-image" style={{ backgroundImage: 'url(/images/australia.jpeg)' }}></div>
+            <div className="destination-image" style={{ backgroundImage: 'url(/images/australia.webp)' }}></div>
             <div className="destination-content">
               <h3>Australia</h3>
               <p>Adventure through stunning landscapes</p>
