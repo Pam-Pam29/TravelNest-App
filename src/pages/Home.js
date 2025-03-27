@@ -60,7 +60,7 @@ const Home = () => {
         <h2>Popular Destinations</h2>
         <div className="destinations-grid">
           <div className="destination-card">
-            <div className="destination-image" style={{ backgroundImage: 'url(/public/images/europe.jpg)' }}></div>
+            <div className="destination-image" style={{ backgroundImage: 'url(/images/europe.webp)' }}></div>
             <div className="destination-content">
               <h3>Europe</h3>
               <p>Explore historic cities and scenic landscapes</p>
@@ -69,7 +69,7 @@ const Home = () => {
           </div>
           
           <div className="destination-card">
-            <div className="destination-image" style={{ backgroundImage: 'url(/public/images/asia.jpg)' }}></div>
+            <div className="destination-image" style={{ backgroundImage: 'url(/images/asia.webp)' }}></div>
             <div className="destination-content">
               <h3>Asia</h3>
               <p>Experience rich cultures and ancient traditions</p>
@@ -78,7 +78,7 @@ const Home = () => {
           </div>
           
           <div className="destination-card">
-            <div className="destination-image" style={{ backgroundImage: 'url(/public/images/north-america.jpg)' }}></div>
+            <div className="destination-image" style={{ backgroundImage: 'url (/images/north-america.jpeg )' }}></div>
             <div className="destination-content">
               <h3>North America</h3>
               <p>Discover diverse cities and natural wonders</p>
@@ -87,7 +87,7 @@ const Home = () => {
           </div>
           
           <div className="destination-card">
-            <div className="destination-image" style={{ backgroundImage: 'url(/public/images/australia.jpg)' }}></div>
+            <div className="destination-image" style={{ backgroundImage: 'url(/images/australia.jpeg)' }}></div>
             <div className="destination-content">
               <h3>Australia</h3>
               <p>Adventure through stunning landscapes</p>
