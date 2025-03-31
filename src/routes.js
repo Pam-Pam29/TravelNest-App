@@ -14,7 +14,6 @@ import UserDashboardPage from './pages/UserDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CustomPackagePage from './pages/CustomPackagePage';
-import AboutUs from './pages/AboutUs';
 import ContactUs from './pages/ContactUs';
 
 
@@ -31,7 +30,6 @@ const AppRoutes = () => {
       <Route path="/payment/:bookingId" element={<PaymentPage />} />
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />
-      <Route path="/about" element={<AboutUs />} />
 <Route path="/contact" element={<ContactUs />} />
       
       

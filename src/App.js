@@ -11,7 +11,6 @@ import './styles/Footer.css'
 import './styles/Home.css';
 import './styles/questionnaire.css';
 import './styles/adminVerification.css';
-import './styles/style.css';
 
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/style.css'
+import '../styles/contact.css'
 
 const ContactUs = () => {
 
@@ -83,7 +83,7 @@ const ContactUs = () => {
 
         <div className="contact-card">
           <h2>Property Partnerships</h2>
-          <p>Interested in listing your property with TravelNest?</p>
+          <p>Interested in partnering with TravelNest?</p>
           <p><strong>Email:</strong> partners@travelnest.com</p>
         </div>
 
@@ -105,15 +105,6 @@ const ContactUs = () => {
         </div>
       </section>
 
-      <section className="social-section">
-        <h2>Connect With Us</h2>
-        <div className="social-links">
-          <p>
-            <strong>Social Media:</strong> Instagram: @TravelNest | Facebook: /TravelNestOfficial | 
-            Twitter: @TravelNest | LinkedIn: TravelNest Inc.
-          </p>
-        </div>
-      </section>
 
       <section className="form-section">
         <h2>Send Us a Message</h2>
