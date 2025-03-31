@@ -70,7 +70,6 @@ const Navbar = () => {
                 <Link to="/" className="dropdown-item" onClick={() => setMainMenuOpen(false)}>Home</Link>
                 <Link to="/packages" className="dropdown-item" onClick={() => setMainMenuOpen(false)}>Packages</Link>
                 <Link to="/custom-package" className="dropdown-item" onClick={() => setMainMenuOpen(false)}>Custom Package</Link>
-                <Link to="/about" className="dropdown-item" onClick={() => setMainMenuOpen(false)}>AboutUs</Link>
                 <Link to="/contact" className="dropdown-item" onClick={() => setMainMenuOpen(false)}>ContactUs</Link>
               </div>
             )}

@@ -15,17 +15,6 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Travelnest</h3>
           <p>Discover amazing travel experiences with our all-inclusive packages.</p>
-          <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-instagram"></i>
-            </a>
-          </div>
         </div>
         
         <div className="footer-section">
