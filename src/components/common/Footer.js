@@ -55,18 +55,6 @@ const Footer = () => {
             )}
           </ul>
         </div>
-        
-        <div className="footer-section">
-          <h3>For Service Providers</h3>
-          <ul className="footer-links">
-            <li><Link to="/provider/register">Join as Provider</Link></li>
-            {currentUser ? (
-              <li><Link to="/provider/dashboard">Provider Dashboard</Link></li>
-            ) : (
-              <li><Link to="/login">Provider Login</Link></li>
-            )}
-          </ul>
-        </div>
       </div>
       
       <div className="footer-bottom">

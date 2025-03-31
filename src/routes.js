@@ -13,19 +13,10 @@ import ConfirmationPage from './pages/ConfirmationPage';
 import UserDashboardPage from './pages/UserDashboardPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import NotFoundPage from './pages/NotFoundPage';
-import PaymentTestPage from './pages/PaymentTestPage';
 import CustomPackagePage from './pages/CustomPackagePage';
-import CompletedBookingsPage from './pages/CompletedBookingsPage'; // New import
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
 
-// Provider Pages
-import ProviderDashboardPage from './pages/ProviderDashboardPage';
-import ProviderProfilePage from './pages/ProviderProfilePage';
-import ProviderRegistrationPage from './pages/ProviderRegistrationPage';
-import ProviderAnalyticsPage from './pages/ProviderAnalyticsPage';
-
-// New Components
-import VerificationPending from './components/provider/VerificationPending';
-import ProviderVerification from './components/admin/ProviderVerification';
 
 
 const AppRoutes = () => {
@@ -38,22 +29,14 @@ const AppRoutes = () => {
       <Route path="/packages/:packageId" element={<PackageDetailPage />} />
       <Route path="/booking/:packageId" element={<BookingPage />} />
       <Route path="/payment/:bookingId" element={<PaymentPage />} />
-      <Route path="/payment-test" element={<PaymentTestPage />} />
       <Route path="/confirmation/:bookingId" element={<ConfirmationPage />} />
       <Route path="/dashboard" element={<UserDashboardPage />} />
-      <Route path="/dashboard/completed-bookings" element={<CompletedBookingsPage />} /> {/* New route */}
+      <Route path="/about" element={<AboutUs />} />
+<Route path="/contact" element={<ContactUs />} />
       
-      {/* Provider Routes */}
-      <Route path="/provider/dashboard" element={<ProviderDashboardPage />} />
-      <Route path="/provider/profile" element={<ProviderProfilePage />} />
-      <Route path="/provider/analytics" element={<ProviderAnalyticsPage />} />
-      <Route path="/provider/register" element={<ProviderRegistrationPage />} />
-      <Route path="/provider/verification-pending" element={<VerificationPending />} />
       
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminDashboardPage />} />
-      <Route path="/admin/providers/verification" element={<ProviderVerification />} />
-      
       <Route path="/custom-package" element={<CustomPackagePage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

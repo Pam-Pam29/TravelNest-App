@@ -1,5 +1,4 @@
-/* src/styles/main.css */
-/* Reset & Base Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +14,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #1e88e5;
+  color: #1a78ca;
 }
 
 ul {
@@ -1261,6 +1260,7 @@ img {
   justify-content: center;
   text-align: center;
   background-image: url ('../../public/images/hero-bg.jpg');
+
   background-size: cover;
   background-position: center;
   position: relative;
