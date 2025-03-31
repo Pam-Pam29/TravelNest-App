@@ -44,9 +44,7 @@ Initially focused on Rwanda's tourism market, TravelNest aims to support local b
 ### Backend
 - **Firebase Authentication** - For user registration and login
 - **Firebase Firestore** - For data storage
-- **Firebase Storage** - For storing images and assets
 - **Firebase Hosting** - For web application deployment
-- **Firebase Functions** - For serverless backend functionality
 
 ### External Services
 - **EmailJS** - For sending confirmation emails and notifications
@@ -104,7 +102,7 @@ travelnest/
 ### Installation
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/travelnest.git
+   git clone https://github.com/yourusername/travelnest-app.git
    cd travelnest
    ```
 
