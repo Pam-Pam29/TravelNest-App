@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../services/firebase';
+import { sendCustomPackageRequestEmail } from '../../services/emailService';
 import '../../styles/questionnaire.css'
 
 const CustomPackageQuestionnaire = () => {
@@ -135,29 +136,29 @@ const CustomPackageQuestionnaire = () => {
       const docRef = await addDoc(collection(db, 'customPackageRequests'), questionnaireData);
       
       console.log("Custom package request submitted with ID:", docRef.id);
+      
+      // Send confirmation email only after successful Firestore operation
+      try {
+        const emailResult = await sendCustomPackageRequestEmail({
+          ...formData,
+          id: docRef.id,
+          email: currentUser.email,
+          fullName: userProfile?.name || formData.fullName
+        });
+        
+        if (emailResult.success) {
+          console.log("Confirmation email sent successfully");
+        } else {
+          console.warn("Failed to send confirmation email", emailResult.error);
+          // Continue with success even if email fails - this is just a notification
+        }
+      } catch (emailError) {
+        console.warn("Error sending confirmation email:", emailError);
+      }
+      
       setSuccess(true);
-
-      // Send confirmation email
-    const emailResult = await sendCustomPackageRequestEmail({
-      ...formData,
-      id: docRef.id,
-      email: currentUser.email,
-      fullName: userProfile?.name || formData.fullName
-    });
-    
-    if (emailResult.success) {
-      console.log("Confirmation email sent successfully");
-    } else {
-      console.warn("Failed to send confirmation email", emailResult.error);
-    }
-    
-    setSuccess(true);
       
-      // Scroll to top to show success message
       window.scrollTo(0, 0);
-      
-      // Optionally, clear form after successful submission
-      // setFormData({ ... }); // Reset form
       
     } catch (error) {
       console.error("Error submitting questionnaire:", error);
@@ -165,7 +166,7 @@ const CustomPackageQuestionnaire = () => {
     } finally {
       setSubmitting(false);
     }
-  };
+  }; 
   
   if (success) {
     return (
