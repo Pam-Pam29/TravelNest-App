@@ -169,7 +169,7 @@ function MyComponent() {
 
 ## Firebase Security
 
-Security rules for Firestore and Storage are defined in `firestore.rules` and `storage.rules` respectively. Make sure to review and update these files to match your security requirements.
+Security rules for Firestore and Storage are defined in `firestore.rules` and `storage.rules`, respectively. Make sure to review and update these files to match your security requirements.
 
 ## Contributing
 We welcome contributions to TravelNest! Please follow these steps:
