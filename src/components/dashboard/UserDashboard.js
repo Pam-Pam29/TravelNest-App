@@ -51,12 +51,6 @@ const UserDashboard = () => {
       </div>
       
       <div className="dashboard-highlight-action">
-  <div className="highlight-card">
-    <div className="highlight-icon">✨</div>
-    <h3>Create Your Dream Vacation</h3>
-    <p>Tell us what you're looking for and we'll craft a custom travel package just for you.</p>
-    <Link to="/custom-package" className="btn-primary">Custom Package Request</Link>
-  </div>
 </div>
 
       <div className="dashboard-content">

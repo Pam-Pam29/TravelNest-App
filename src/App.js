@@ -13,7 +13,6 @@ import './styles/providerRegistration.css';
 import './styles/adminVerification.css';
 import './styles/verificationPending.css';
 import './styles/completedBookings.css';
-import './styles/userReview.css';
 
 
 const App = () => {

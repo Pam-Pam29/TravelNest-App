@@ -1,5 +1,4 @@
 /* src/styles/main.css */
-@import './questionnaire.css';
 /* Reset & Base Styles */
 * {
   margin: 0;
@@ -772,7 +771,7 @@ img {
 }
 
 .package-gallery {
-  height: 400px;
+  height: 500px;
 }
 
 .package-gallery .main-image 
@@ -786,7 +785,9 @@ img {
   padding: 2rem;
 }
 
-.package-description,
+.package-description{
+  margin-top: 70px;
+}
 .package-itinerary,
 .package-inclusions {
   margin-bottom: 2rem;

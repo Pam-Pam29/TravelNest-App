@@ -5,6 +5,7 @@ import { getPackageById } from '../../services/packageService';
 import { useAuth } from '../../contexts/AuthContext';
 
 
+
 const PackageDetail = () => {
   const { packageId } = useParams();
   const [packageDetail, setPackageDetail] = useState(null);
@@ -76,7 +77,7 @@ const PackageDetail = () => {
       
       <div className="package-gallery">
         <img 
-          src={imageUrl || '/assets/images/package-placeholder.jpg'} 
+          src={imageUrl || ''} 
           alt={title}
           className="main-image" 
         />

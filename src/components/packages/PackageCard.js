@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const PackageCard = ({ travelPackage }) => {
   // Add a guard clause to prevent errors if travelPackage is undefined
   if (!travelPackage) {
@@ -16,7 +17,7 @@ const PackageCard = ({ travelPackage }) => {
     price = 0, 
     duration = 0, 
     region = '', 
-    imageUrl = '/assets/images/package-placeholder.jpg'
+    imageUrl = ''
   } = travelPackage;
 
   return (
