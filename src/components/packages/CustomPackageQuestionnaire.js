@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../../services/firebase';
+import '../../styles/questionnaire.css'
 
 const CustomPackageQuestionnaire = () => {
   const { currentUser, userProfile, loading } = useAuth();

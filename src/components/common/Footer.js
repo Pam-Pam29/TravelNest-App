@@ -1,4 +1,3 @@
-// Updated Footer Component with proper CSS class references
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -14,7 +13,7 @@ const Footer = () => {
     <footer className="site-footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Travenest</h3>
+          <h3>Travelnest</h3>
           <p>Discover amazing travel experiences with our all-inclusive packages.</p>
           <div className="social-icons">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -74,7 +73,7 @@ const Footer = () => {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Travenest. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Travelnest. All rights reserved.</p>
         <div className="footer-bottom-links">
           <Link to="/privacy-policy">Privacy Policy</Link>
           <Link to="/terms-of-service">Terms of Service</Link>
@@ -84,4 +83,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer;

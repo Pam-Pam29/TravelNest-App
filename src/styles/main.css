@@ -34,10 +34,6 @@ img {
   min-height: 100vh;
 }
 
-.main-content {
-  flex: 1;
-  padding-top: 70px; /* Height of the navbar */
-}
 
 .page-container {
   max-width: 1200px;
@@ -342,19 +338,6 @@ img {
   gap: 1rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-  }
-  
-  .navbar-menu {
-    order: 3;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 1rem;
-  }
   
   .form-row {
     flex-direction: column;
@@ -372,7 +355,7 @@ img {
   .hero-content h1 {
     font-size: 2rem;
   }
-}
+
 
 /* Loading Spinner */
 .loading-spinner {
@@ -441,46 +424,6 @@ img {
   text-decoration: underline;
 }
 
-/* Navigation */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-.navbar-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1e88e5;
-}
-
-.navbar-menu {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.navbar-item {
-  color: #444;
-  transition: color 0.3s;
-}
-
-.navbar-item:hover {
-  color: #1e88e5;
-}
-
-.navbar-auth {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
 
 .btn-login {
   color: #1e88e5;
