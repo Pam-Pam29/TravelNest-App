@@ -182,10 +182,8 @@ console.log("Complete booking data:", JSON.stringify(data, null, 2));
             console.log("Email test result:", result);
           });
         }}
-        className="btn-secondary"
-        style={{marginTop: '10px'}}
       >
-        Send Test Email
+
       </button>
       </div>
     </div>
